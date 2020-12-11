@@ -1,7 +1,7 @@
 ref: https://packaging.python.org/tutorials/packaging-projects/
 
 Install the setup tools
-python -m pip install --upgrade setuptools wheel
+python -m pip install --upgrade setuptools wheel twine
 
 Build pypi files for publishing
 python setup.py sdist bdist_wheel
