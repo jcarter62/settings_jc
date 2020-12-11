@@ -1,0 +1,13 @@
+ref: https://packaging.python.org/tutorials/packaging-projects/
+
+Install the setup tools
+python -m pip install --upgrade setuptools wheel
+
+Build pypi files for publishing
+python setup.py sdist bdist_wheel
+
+Publish to pypi.org
+python3 -m twine upload dist/*
+
+
+
