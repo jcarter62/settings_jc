@@ -39,19 +39,19 @@ class Settings:
         except OSError as e:
             print(str(e))
 
-        #
-        # add any missing items
-        #
-        for i in Defaults().values:
-            def_name = i['name']
-            found = False
-            for item in self.items:
-                if item['name'] == def_name:
-                    found = True
-                    break
-            if not found:
-                new_item = {'name': i['name'], 'value': i['value']}
-                self.items.append(new_item)
+        # #
+        # # add any missing items
+        # #
+        # for i in Defaults().values:
+        #     def_name = i['name']
+        #     found = False
+        #     for item in self.items:
+        #         if item['name'] == def_name:
+        #             found = True
+        #             break
+        #     if not found:
+        #         new_item = {'name': i['name'], 'value': i['value']}
+        #         self.items.append(new_item)
 
         # determine appname
         for i in self.items:

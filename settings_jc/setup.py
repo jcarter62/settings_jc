@@ -39,14 +39,51 @@ class Setup:
         self.clear()
         settings = Settings()
 
+        def print_settings(items):
+            for i in range(len(items)):
+                print(f"{i}: {items[i]['name']} = {items[i]['value']}")
+            return
+
+        def print_one(n, items):
+            for i in range(len(items)):
+                if i == n:
+                    print(f"{i}: {items[i]['name']} = {items[i]['value']}")
+            return
+
+
+        def update_item(n, nvalue, items):
+            for i in range(len(items)):
+                if i == n:
+                    items[i]['value'] = nvalue
+            return
+
         while done == False:
-            for item in settings.items:
-                msg = 'Provide %s' % item['name']
-                defval = item['value']
-                newval = self.user_input(msg=msg, def_val=defval)
-                item['value'] = newval
-
-        if self.user_input(msg='Update config file ? ', def_val='yes') == 'yes':
-            settings.save_config()
-
-        print(str(settings))
+            print('Current Settings:')
+            print_settings(settings.items)
+            print('')
+            inp = input('(s)ave, (a)dd, (e)dit, (d)elete, (q)uit\n')
+            inp = inp.lower()
+            if inp == 's':
+                settings.save_config()
+            elif inp == 'e':
+                item_num = input('Item # to Edit')
+                print_one(item_num, settings.items)
+                item_val = input('New Value for item')
+                i = int(item_num)
+                settings.items[i]['value'] = item_val
+                settings.save_config()
+            elif inp == 'd':
+                item_num = input('Item # to Delete')
+                i = int(item_num)
+                print_one(i, settings.items)
+                confirm_delete = input('Confirm deletion(y/n)').lower()
+                if confirm_delete == 'y':
+                    settings.items.pop(i)
+                    settings.save_config()
+            elif inp == 'a':
+                item_name = input('Name')
+                item_val = input('Value')
+                settings.items.append({'name': item_name, 'value': item_val})
+                settings.save_config()
+            elif inp == 'q':
+                done = True
