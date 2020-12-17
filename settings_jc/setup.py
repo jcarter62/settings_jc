@@ -57,7 +57,7 @@ class Setup:
                     items[i]['value'] = nvalue
             return
 
-        while done == False:
+        while not done:
             print('Current Settings:')
             print_settings(settings.items)
             print('')
